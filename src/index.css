@@ -14,10 +14,12 @@
 
   .page {
     page-break-after: always;
+    border-style: none;
   }
 }
 
 .page {
+  border: solid silver 1px;
   width: 105mm;
   height: 148mm;
 }
