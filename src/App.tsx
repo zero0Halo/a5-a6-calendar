@@ -1,4 +1,4 @@
-import Page from "./components/Page";
+import React from "react";
 import LaunchPage from "./components/LaunchPage";
 
 const year = 2024;
