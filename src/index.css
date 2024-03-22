@@ -14,7 +14,7 @@
 
   .page {
     page-break-after: always;
-    border-style: none;
+    border: none transparent 0px;
   }
 }
 
