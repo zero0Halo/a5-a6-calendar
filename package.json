@@ -14,7 +14,7 @@
     "react-dom": "^18.2.0"
   },
   "scripts": {
-    "dev": "parcel src/index.html",
+    "start": "parcel public/index.html",
     "build": "parcel build dist"
   }
 }
