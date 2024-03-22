@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./css/reset.css";
+
+@media print {
+  @page {
+    size: A6;
+    margin: 0;
+    width: 105mm;
+    height: 148mm;
+  }
+
+  .page {
+    page-break-after: always;
+  }
+}
+
+.page {
+  width: 105mm;
+  height: 148mm;
+}
