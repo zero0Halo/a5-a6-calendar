@@ -1,9 +1,10 @@
 import dayjs from "dayjs";
 import Page from "./Page";
+import TodoPage from "./TodoPage";
 
 export interface MonthPageProps {
   monthName: string;
-  index: number;
+  monthIndex: number;
   year: number;
 }
 
@@ -13,8 +14,8 @@ const cellStyle =
   "bg-black  flex flex-col font-bold h-16 justify-center items-center m-1 p-1 text-white w-16";
 const blankStyle = "bg-slate-100";
 
-function MonthPage({ monthName, index, year }: MonthPageProps) {
-  const monthStartString = `${index}/1/${year}`;
+function MonthPage({ monthName, monthIndex, year }: MonthPageProps) {
+  const monthStartString = `${monthIndex}/1/${year}`;
   const daysInMonth: number = dayjs(monthStartString).daysInMonth();
   const dayStartIndex: number = dayjs(monthStartString).day();
   let count = 0;
@@ -27,7 +28,7 @@ function MonthPage({ monthName, index, year }: MonthPageProps) {
 
   return (
     <>
-      <Page key={monthName} pageIdentifier={`month-${index}`}>
+      <Page key={monthName} pageIdentifier={`month-${monthIndex}`}>
         <div className="align-center flex justify-between px-8 pt-8">
           <h2 className="font-bold text-2xl">
             {monthName}, {year}
@@ -53,7 +54,7 @@ function MonthPage({ monthName, index, year }: MonthPageProps) {
           {daysArray.map((m) => (
             <a
               className={m > 0 ? cellStyle : blankStyle}
-              href={`#month-${index}-${m}`}
+              href={`#month-${monthIndex}-${m}`}
             >
               {m > 0 ? m : ""}
             </a>
@@ -62,12 +63,13 @@ function MonthPage({ monthName, index, year }: MonthPageProps) {
       </Page>
 
       {[...new Array(daysInMonth)].map((_, i) => (
-        <Page
+        <TodoPage
+          dayIndex={i}
+          monthIndex={monthIndex}
           key={`${monthName}-${i + 1}`}
-          pageIdentifier={`month-${index}-${i + 1}`}
-        >
-          TODO, {monthName} {i + 1}
-        </Page>
+          pageIdentifier={`month-${monthIndex}-${i + 1}`}
+          year={year}
+        />
       ))}
     </>
   );
