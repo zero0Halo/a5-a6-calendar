@@ -30,11 +30,14 @@ function LaunchPage({ year }: LaunchPageProps) {
         className="flex flex-col align-center justify-evenly"
         pageIdentifier="main"
       >
+        <h1 className="text-center text-5xl">{year} Planner</h1>
+
         {monthsByName.map(({ monthName, monthIndex }) => (
           <div className="flex justify-center" key={monthName}>
             <a
-              className="flex justify-center bg-black font-bold text-white w-48 p-1"
+              className="self-center flex justify-center bg-black font-bold text-white w-48 p-1"
               href={`#month-${monthIndex}`}
+              key={monthName}
             >
               {monthName}
             </a>

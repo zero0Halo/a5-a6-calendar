@@ -15,27 +15,27 @@ const cellStyle =
 const blankStyle = "bg-slate-100";
 
 function MonthPage({ monthName, monthIndex, year }: MonthPageProps) {
-  const monthStartString = `${monthIndex}/1/${year}`;
+  const monthStartString: string = `${year}-${monthIndex}-1`;
   const daysInMonth: number = dayjs(monthStartString).daysInMonth();
   const dayStartIndex: number = dayjs(monthStartString).day();
   let count = 0;
   const daysArray = [...new Array(42)].map((_, i) => {
-    if (i + 1 >= dayStartIndex && count < daysInMonth) {
+    if (i >= dayStartIndex && count < daysInMonth) {
       return (count += 1);
     }
-    return 0;
+    return i + "-blank";
   });
 
   return (
     <>
-      <Page key={monthName} pageIdentifier={`month-${monthIndex}`}>
+      <Page key={`month-${monthIndex}`} pageIdentifier={`month-${monthIndex}`}>
         <div className="align-center flex justify-between px-8 pt-8">
           <h2 className="font-bold text-2xl">
             {monthName}, {year}
           </h2>
 
           <a
-            className="bg-black font-bold text-center text-sm text-white w-24 p-1"
+            className="self-center bg-black font-bold text-center text-sm text-white w-24 p-1"
             href="#main"
           >
             Return
@@ -53,23 +53,36 @@ function MonthPage({ monthName, monthIndex, year }: MonthPageProps) {
 
           {daysArray.map((m) => (
             <a
-              className={m > 0 ? cellStyle : blankStyle}
+              className={typeof m !== "string" ? cellStyle : blankStyle}
               href={`#month-${monthIndex}-${m}`}
+              key={`month-${monthIndex}-${m}`}
             >
-              {m > 0 ? m : ""}
+              {typeof m !== "string" ? m : ""}
             </a>
           ))}
         </div>
       </Page>
 
       {[...new Array(daysInMonth)].map((_, i) => (
-        <TodoPage
-          dayIndex={i}
-          monthIndex={monthIndex}
-          key={`${monthName}-${i + 1}`}
-          pageIdentifier={`month-${monthIndex}-${i + 1}`}
-          year={year}
-        />
+        <>
+          <TodoPage
+            dayIndex={i}
+            meetingToggled={false}
+            monthIndex={monthIndex}
+            key={`${monthName}-${i + 1}`}
+            pageIdentifier={`month-${monthIndex}-${i + 1}`}
+            year={year}
+          />
+
+          <TodoPage
+            dayIndex={i}
+            meetingToggled={true}
+            monthIndex={monthIndex}
+            key={`${monthName}-${i + 1}-meeting`}
+            pageIdentifier={`month-${monthIndex}-${i + 1}`}
+            year={year}
+          />
+        </>
       ))}
     </>
   );

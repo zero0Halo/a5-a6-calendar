@@ -4,9 +4,50 @@
 @tailwind components;
 @tailwind utilities;
 
+.page {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  /* border: solid silver 1px; */
+  position: relative;
+  width: 148mm;
+  height: 210mm;
+  z-index: 0;
+}
+
+.page.todo:before,
+.page.meeting:before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: url("../public/grid.png");
+  background-size: contain;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.45;
+}
+
+.active-page {
+  position: relative;
+}
+
+.active-page:before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid black;
+  left: calc(50% - 4px);
+  position: absolute;
+  top: calc(100% + 8px);
+}
+
 @media print {
   @page {
-    size: A6;
+    size: A5;
     margin: 0;
     width: 148mm;
     height: 210mm;
@@ -16,10 +57,4 @@
     page-break-after: always;
     border: none transparent 0px;
   }
-}
-
-.page {
-  border: solid silver 1px;
-  width: 148mm;
-  height: 210mm;
 }
