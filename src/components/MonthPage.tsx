@@ -29,13 +29,13 @@ function MonthPage({ monthName, monthIndex, year }: MonthPageProps) {
   return (
     <>
       <Page key={`month-${monthIndex}`} pageIdentifier={`month-${monthIndex}`}>
-        <div className="align-center flex justify-between px-8 pt-8">
+        <div className="align-middle flex justify-between px-8 pt-8">
           <h2 className="font-bold text-2xl">
             {monthName}, {year}
           </h2>
 
           <a
-            className="self-center bg-black font-bold text-center text-sm text-white w-24 p-1"
+            className="self-end bg-black font-bold text-center text-sm text-white w-24 p-1"
             href="#main"
           >
             Return

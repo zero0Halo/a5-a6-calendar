@@ -12,7 +12,7 @@ interface TodoPageProps {
 const activePageStyles =
   "active-page bg-white border-solid border-2 font-bold p-1 self-center text-center text-sm text-black w-24";
 const linkStyles =
-  "bg-black font-bold p-1 self-center text-center text-sm text-white w-24";
+  "bg-black font-bold p-1 self-end text-center text-sm text-white w-24";
 
 function TodoPage({
   dayIndex,
@@ -39,7 +39,7 @@ function TodoPage({
           </a>
         </div>
 
-        <nav className="flex justify-center gap-4 mt-8">
+        <nav className="flex justify-center gap-4 mt-4">
           {!meetingToggled && (
             <>
               <div className={activePageStyles}>To Do</div>
