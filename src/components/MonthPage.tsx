@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import Page from "./Page";
-import TodoPage from "./TodoPage";
+import DayPage, { MEETINGS, PAGE_ONE, PAGE_TWO, TODO } from "./DayPage";
 
 export interface MonthPageProps {
   monthName: string;
@@ -54,8 +54,8 @@ function MonthPage({ monthName, monthIndex, year }: MonthPageProps) {
           {daysArray.map((m) => (
             <a
               className={typeof m !== "string" ? cellStyle : blankStyle}
-              href={`#month-${monthIndex}-${m}`}
-              key={`month-${monthIndex}-${m}`}
+              href={`#month-${monthIndex}-${m}-${TODO}-${PAGE_ONE}`}
+              key={`month-${monthIndex}-${m}-${TODO}-${PAGE_ONE}`}
             >
               {typeof m !== "string" ? m : ""}
             </a>
@@ -65,21 +65,43 @@ function MonthPage({ monthName, monthIndex, year }: MonthPageProps) {
 
       {[...new Array(daysInMonth)].map((_, i) => (
         <>
-          <TodoPage
+          <DayPage
             dayIndex={i}
-            meetingToggled={false}
             monthIndex={monthIndex}
             key={`${monthName}-${i + 1}`}
             pageIdentifier={`month-${monthIndex}-${i + 1}`}
+            pageMode={TODO}
+            pageNumber={PAGE_ONE}
             year={year}
           />
 
-          <TodoPage
+          <DayPage
             dayIndex={i}
-            meetingToggled={true}
+            monthIndex={monthIndex}
+            key={`${monthName}-${i + 1}`}
+            pageIdentifier={`month-${monthIndex}-${i + 1}`}
+            pageMode={TODO}
+            pageNumber={PAGE_TWO}
+            year={year}
+          />
+
+          <DayPage
+            dayIndex={i}
             monthIndex={monthIndex}
             key={`${monthName}-${i + 1}-meeting`}
             pageIdentifier={`month-${monthIndex}-${i + 1}`}
+            pageMode={MEETINGS}
+            pageNumber={PAGE_ONE}
+            year={year}
+          />
+
+          <DayPage
+            dayIndex={i}
+            monthIndex={monthIndex}
+            key={`${monthName}-${i + 1}-meeting`}
+            pageIdentifier={`month-${monthIndex}-${i + 1}`}
+            pageMode={MEETINGS}
+            pageNumber={PAGE_TWO}
             year={year}
           />
         </>

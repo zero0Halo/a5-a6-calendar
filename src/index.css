@@ -7,7 +7,7 @@
 .page {
   font-family: Georgia, "Times New Roman", Times, serif;
   padding-top: 5mm;
-  border: solid silver 1px;
+  /* border: solid silver 1px; */
   position: relative;
   width: 148mm;
   height: 210mm;
