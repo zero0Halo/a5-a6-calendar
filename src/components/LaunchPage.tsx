@@ -49,6 +49,7 @@ function LaunchPage({ noWeekend, year }: LaunchPageProps) {
 
       {monthsByName.map(({ monthName, monthIndex, year }) => (
         <MonthPage
+          key={monthName}
           monthName={monthName}
           monthIndex={monthIndex}
           noWeekend={noWeekend}

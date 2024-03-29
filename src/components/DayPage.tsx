@@ -20,7 +20,7 @@ export const PAGE_TWO = "page-two";
 export const activePageStyles =
   "active-page bg-white border-solid border-2 font-bold p-1 self-auto text-center text-sm text-black w-24";
 export const linkStyles =
-  "bg-black border-solid border-2 font-bold p-1 self-auto text-center text-sm text-white w-24";
+  "bg-black border-black border-solid border-2 font-bold p-1 self-auto text-center text-sm text-white w-24";
 const activePageLinkStyles = classnames([activePageStyles, "self-auto", "w-8"]);
 const pageLinkStyles = classnames([linkStyles, "self-auto", "w-8"]);
 
@@ -57,22 +57,57 @@ function DayPage({
           </a>
         </div>
 
-        <nav className="flex justify-center gap-4 mt-4">
+        <nav className="grid grid-cols-12 mt-4 px-8">
           <NavigationItem
-            className={pageMode === TODO ? activePageStyles : linkStyles}
+            className={classnames([
+              pageMode === TODO ? activePageStyles : linkStyles,
+              "col-start-5",
+              "col-end-7",
+              "w-full",
+            ])}
             link={pageMode === TODO ? false : toOtherModeLink}
           >
             Todo
           </NavigationItem>
           <NavigationItem
-            className={pageMode === MEETINGS ? activePageStyles : linkStyles}
+            className={classnames([
+              pageMode === MEETINGS ? activePageStyles : linkStyles,
+              "col-start-7",
+              "col-end-9",
+              "w-full",
+            ])}
             link={pageMode === MEETINGS ? false : toOtherModeLink}
           >
             Meetings
           </NavigationItem>
+
+          <div className="col-start-9 col-span-4">
+            <div className="flex justify-end">
+              <NavigationItem
+                className={
+                  pageNumber === PAGE_ONE
+                    ? activePageLinkStyles
+                    : pageLinkStyles
+                }
+                link={pageNumber === PAGE_ONE ? false : toOtherPageLink}
+              >
+                1
+              </NavigationItem>
+              <NavigationItem
+                className={
+                  pageNumber === PAGE_TWO
+                    ? activePageLinkStyles
+                    : pageLinkStyles
+                }
+                link={pageNumber === PAGE_TWO ? false : toOtherPageLink}
+              >
+                2
+              </NavigationItem>
+            </div>
+          </div>
         </nav>
 
-        <nav className="align-middle justify-center absolute bottom-5 flex gap-2 right-8">
+        {/* <nav className="align-middle justify-center absolute bottom-5 flex gap-2 right-8">
           <NavigationItem
             className={
               pageNumber === PAGE_ONE ? activePageLinkStyles : pageLinkStyles
@@ -89,7 +124,7 @@ function DayPage({
           >
             2
           </NavigationItem>
-        </nav>
+        </nav> */}
       </Page>
     </>
   );
