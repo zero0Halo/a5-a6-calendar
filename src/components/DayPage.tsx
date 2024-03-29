@@ -32,7 +32,7 @@ function DayPage({
   pageMode,
   year,
 }: DayPageProps) {
-  const day: string = `${year}-${monthIndex}-${dayIndex + 1}`;
+  const day: string = `${year}-${monthIndex}-${dayIndex}`;
   const formatted = dayjs(day).format("dddd, MMM D, YYYY");
   const pageIdentifier = `${identifier}-${pageMode}-${pageNumber}`;
   const toOtherModeLink = `${identifier}-${

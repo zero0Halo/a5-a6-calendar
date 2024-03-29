@@ -3,6 +3,7 @@ import Page from "./Page";
 import MonthPage, { MonthPageProps } from "./MonthPage";
 
 interface LaunchPageProps {
+  noWeekend: boolean;
   year: number;
 }
 
@@ -16,11 +17,12 @@ function getMonthName({
   return dayjs(`${monthIndex}/1/${year}`).format("MMMM") as string;
 }
 
-function LaunchPage({ year }: LaunchPageProps) {
+function LaunchPage({ noWeekend, year }: LaunchPageProps) {
   const months = [...Array(12)].map((_, i) => i + 1);
   const monthsByName = months.map((m) => ({
     monthName: getMonthName({ monthIndex: m, year }),
     monthIndex: m,
+    noWeekend,
     year,
   }));
 
@@ -46,7 +48,12 @@ function LaunchPage({ year }: LaunchPageProps) {
       </Page>
 
       {monthsByName.map(({ monthName, monthIndex, year }) => (
-        <MonthPage monthName={monthName} monthIndex={monthIndex} year={year} />
+        <MonthPage
+          monthName={monthName}
+          monthIndex={monthIndex}
+          noWeekend={noWeekend}
+          year={year}
+        />
       ))}
     </>
   );
