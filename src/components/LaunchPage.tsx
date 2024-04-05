@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import Page from "./Page";
-import MonthPage, { MonthPageProps } from "./MonthPage";
+import MonthPage from "./MonthPage";
 
 interface LaunchPageProps {
   noWeekend: boolean;
@@ -37,7 +37,7 @@ function LaunchPage({ noWeekend, year }: LaunchPageProps) {
         {monthsByName.map(({ monthName, monthIndex }) => (
           <div className="flex justify-center" key={monthName}>
             <a
-              className="self-center flex justify-center bg-black font-bold text-white w-48 p-1"
+              className="month-button"
               href={`#month-${monthIndex}`}
               key={monthName}
             >

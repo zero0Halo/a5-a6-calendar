@@ -4,6 +4,44 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .month-button {
+    @apply self-center flex justify-center bg-black font-bold text-white w-48 p-1;
+  }
+
+  .header-style {
+    @apply bg-gray-200 border-solid border-2 flex flex-col h-8 justify-center items-center m-1 p-1 self-end w-16;
+  }
+
+  .cell-style {
+    @apply bg-black flex flex-col font-bold h-16 justify-center items-center m-1 p-1 text-white w-16;
+  }
+
+  .blank-style {
+    @apply bg-slate-100;
+  }
+
+  .weekend-style {
+    @apply bg-slate-100 border-slate-400 border-solid border-2 flex flex-col font-bold h-16 justify-center items-center m-1 p-1 text-[#999999] w-16;
+  }
+
+  .active-page-styles {
+    @apply active-page bg-white border-solid border-2 font-bold p-1 self-auto text-center text-sm text-black w-24;
+  }
+
+  .link-styles {
+    @apply bg-black border-black border-solid border-2 font-bold p-1 self-auto text-center text-sm text-white w-24;
+  }
+
+  .active-page-link-styles {
+    @apply active-page-styles self-auto w-8;
+  }
+
+  .page-link-styles {
+    @apply link-styles self-auto w-8;
+  }
+}
+
 .page {
   font-family: Georgia, "Times New Roman", Times, serif;
   padding-top: 5mm;

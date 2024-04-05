@@ -9,14 +9,6 @@ export interface MonthPageProps {
   year: number;
 }
 
-const headerStyle =
-  "bg-gray-200 border-solid border-2 flex flex-col h-8 justify-center items-center m-1 p-1 self-end w-16";
-const cellStyle =
-  "bg-black flex flex-col font-bold h-16 justify-center items-center m-1 p-1 text-white w-16";
-const blankStyle = "bg-slate-100";
-const weekendStyle =
-  "bg-slate-100 border-slate-400 border-solid border-2 flex flex-col font-bold h-16 justify-center items-center m-1 p-1 text-[#999999] w-16";
-
 function MonthPage({ monthName, monthIndex, noWeekend, year }: MonthPageProps) {
   const monthStartString: string = `${year}-${monthIndex}-1`;
   const daysInMonth: number = dayjs(monthStartString).daysInMonth();
@@ -51,22 +43,22 @@ function MonthPage({ monthName, monthIndex, noWeekend, year }: MonthPageProps) {
         </div>
 
         <div className="grid grid-cols-7 grid-rows-7 m-6">
-          <div className={headerStyle}>Su</div>
-          <div className={headerStyle}>M</div>
-          <div className={headerStyle}>T</div>
-          <div className={headerStyle}>W</div>
-          <div className={headerStyle}>Th</div>
-          <div className={headerStyle}>F</div>
-          <div className={headerStyle}>Sa</div>
+          <div className="header-style">Su</div>
+          <div className="header-style">M</div>
+          <div className="header-style">T</div>
+          <div className="header-style">W</div>
+          <div className="header-style">Th</div>
+          <div className="header-style">F</div>
+          <div className="header-style">Sa</div>
 
           {daysArray.map((day) => (
             <a
               className={
                 day.isBlank
-                  ? blankStyle
+                  ? "blank-style"
                   : day.isWeekday
-                  ? cellStyle
-                  : weekendStyle
+                  ? "cell-style"
+                  : "weekend-style"
               }
               href={`#month-${monthIndex}-${day.index}-${TODO}-${PAGE_ONE}`}
               key={`month-${monthIndex}-${day.isBlank && "blank-"}${

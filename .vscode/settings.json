@@ -1,0 +1,7 @@
+{
+  "css.lint.unknownAtRules": "ignore",
+  "path-intellisense.showHiddenFiles": true,
+  "files.exclude": {
+    "**/.git": false
+  }
+}
