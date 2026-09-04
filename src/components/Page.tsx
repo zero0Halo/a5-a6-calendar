@@ -1,7 +1,8 @@
+import type { ReactNode } from "react";
 import classnames from "classnames";
 
 interface PageProps {
-  children?: any;
+  children?: ReactNode;
   className?: string;
   pageIdentifier?: string;
 }

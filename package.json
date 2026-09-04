@@ -16,6 +16,6 @@
   },
   "scripts": {
     "start": "parcel public/index.html",
-    "build": "parcel build dist"
+    "build": "parcel build public/index.html"
   }
 }

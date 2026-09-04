@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import Page from "./Page";
 import DayPage, { MEETINGS, PAGE_ONE, PAGE_TWO, TODO } from "./DayPage";
+import { Fragment } from "react";
 
 export interface MonthPageProps {
   monthName: string;
@@ -10,7 +11,7 @@ export interface MonthPageProps {
 }
 
 function MonthPage({ monthName, monthIndex, noWeekend, year }: MonthPageProps) {
-  const monthStartString: string = `${year}-${monthIndex}-1`;
+  const monthStartString = `${year}-${monthIndex}-1`;
   const daysInMonth: number = dayjs(monthStartString).daysInMonth();
   const dayStartIndex: number = dayjs(monthStartString).day();
   let count = 0;
@@ -51,14 +52,15 @@ function MonthPage({ monthName, monthIndex, noWeekend, year }: MonthPageProps) {
           <div className="header-style">F</div>
           <div className="header-style">Sa</div>
 
+          {/* Blank cells intentionally remain links for Supernote compatibility. */}
           {daysArray.map((day) => (
             <a
               className={
                 day.isBlank
                   ? "blank-style"
                   : day.isWeekday
-                  ? "cell-style"
-                  : "weekend-style"
+                    ? "cell-style"
+                    : "weekend-style"
               }
               href={`#month-${monthIndex}-${day.index}-${TODO}-${PAGE_ONE}`}
               key={`month-${monthIndex}-${day.isBlank && "blank-"}${
@@ -73,7 +75,7 @@ function MonthPage({ monthName, monthIndex, noWeekend, year }: MonthPageProps) {
 
       {daysArray.map(({ index, isBlank, isWeekday }) =>
         isBlank || !isWeekday ? null : (
-          <>
+          <Fragment key={`month-${monthIndex}-${index}-pages`}>
             <DayPage
               dayIndex={index}
               monthIndex={monthIndex}
@@ -113,8 +115,8 @@ function MonthPage({ monthName, monthIndex, noWeekend, year }: MonthPageProps) {
               pageNumber={PAGE_TWO}
               year={year}
             />
-          </>
-        )
+          </Fragment>
+        ),
       )}
     </>
   );

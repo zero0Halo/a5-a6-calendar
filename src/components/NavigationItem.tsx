@@ -1,7 +1,7 @@
-import { MEETINGS, PAGE_ONE, PAGE_TWO, TODO } from "./DayPage";
+import type { ReactNode } from "react";
 
 interface NavigationItemProps {
-  children: any;
+  children: ReactNode;
   className: string;
   link?: string | boolean;
 }
